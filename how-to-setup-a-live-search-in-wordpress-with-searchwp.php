@@ -79,7 +79,7 @@ function live_ajax_get_post_data_from_ids( $post_ids ) {
 
 	foreach ( $post_ids as $post_id ) {
 		$posts[ $post_id ] = [
-			'post_title'     => get_the_title( $post_id ),
+			'post_title'     => html_entity_decode( get_the_title( $post_id ) ),
 			'post_permalink' => get_the_permalink( $post_id ),
 		];
 	}
