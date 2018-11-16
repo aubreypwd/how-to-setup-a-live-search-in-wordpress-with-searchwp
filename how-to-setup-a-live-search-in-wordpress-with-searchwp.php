@@ -65,3 +65,50 @@ add_action( 'cmb2_admin_init', function() {
 		'column' => true,
 	) );
 } );
+
+add_action( 'wp_enqueue_scripts', function() {
+	wp_enqueue_script( 'ajax-search', plugins_url( 'ajax-search.js', __FILE__ ), array( 'jquery' ), '1.0', true );
+	wp_localize_script( 'ajax-search', 'ajaxSearchl10n', array(
+		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+		'nonce'   => wp_create_nonce( 'ajax_search' ),
+	) );
+} );
+
+function live_ajax_get_post_data_from_ids( $post_ids ) {
+	$posts = [];
+
+	foreach ( $post_ids as $post_id ) {
+		$posts[ $post_id ] = [
+			'post_title'     => get_the_title( $post_id ),
+			'post_permalink' => get_the_permalink( $post_id ),
+		];
+	}
+
+	return $posts;
+}
+
+function live_ajax_search() {
+
+	// Make sure that the nonce passes.
+	check_admin_referer( 'ajax_search', 'nonce' );
+
+	// Get our search term sent from the input.
+	$s = sanitize_text_field( $_POST['s'] );
+
+	// If no SearchWP use this...
+	if ( ! class_exists( 'SWP_Query' ) ) {
+
+		// Use default WP_Query search.
+		$query = new WP_Query( array(
+			's'      => $s,
+			'fields' => 'ids',
+		) );
+
+		// Send back the results for WP_Query search.
+		wp_send_json_success( live_ajax_get_post_data_from_ids( $query->get_posts() ) );
+	}
+
+
+}
+add_action( 'wp_ajax_nopriv_ajax_search', 'live_ajax_search' );
+add_action( 'wp_ajax_ajax_search', 'live_ajax_search' );
