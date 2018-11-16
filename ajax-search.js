@@ -5,6 +5,7 @@ if ( ! window.hasOwnProperty( 'ajaxSearch' ) ) {
 
 		var request = false;
 		var resultsLocation = {};
+		var input = {};
 
 		function placeResults( data ) {
 
@@ -37,7 +38,7 @@ if ( ! window.hasOwnProperty( 'ajaxSearch' ) ) {
 		function initAjax() {
 
 			// When someone adds/removes a character from the input...
-			$( 'form.search-form .search-field' ).on( 'keyup', function() {
+			input.on( 'keyup', function() {
 				if ( false !== request ) {
 
 					// Cancel any older requests.
@@ -73,10 +74,16 @@ if ( ! window.hasOwnProperty( 'ajaxSearch' ) ) {
 			var form = $( 'form.search-form' ).append( resultsLocation );
 		}
 
+		function initInput() {
+			input.attr( 'autocomplete', 'off' );
+		}
+
 		function init() {
 
+			// Store input for use later.
+			input = $( 'form.search-form .search-field' );
 
-
+			initInput();
 			initResultsLocation();
 			initAjax();
 
