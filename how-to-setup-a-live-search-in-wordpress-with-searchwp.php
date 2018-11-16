@@ -78,6 +78,10 @@ add_action( 'wp_enqueue_scripts', function() {
 function live_ajax_get_post_data_from_ids( $post_ids ) {
 	$posts = [];
 
+	if ( ! is_array( $post_ids ) ) {
+		return [];
+	}
+
 	foreach ( $post_ids as $post_id ) {
 		$posts[ $post_id ] = [
 			'post_title'     => html_entity_decode( get_the_title( $post_id ) ),
