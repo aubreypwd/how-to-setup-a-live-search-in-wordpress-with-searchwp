@@ -67,7 +67,7 @@ add_action( 'cmb2_admin_init', function() {
 } );
 
 add_action( 'wp_enqueue_scripts', function() {
-	wp_enqueue_script( 'ajax-search', plugins_url( 'ajax-search.js', __FILE__ ), array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'ajax-search', plugins_url( 'ajax-search.js', __FILE__ ), array( 'jquery' ), time(), true );
 	wp_localize_script( 'ajax-search', 'ajaxSearchl10n', array(
 		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 		'nonce'   => wp_create_nonce( 'ajax_search' ),

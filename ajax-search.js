@@ -3,12 +3,19 @@ if ( ! window.hasOwnProperty( 'ajaxSearch' ) ) {
 
 	window.ajaxSearch = ( function( $, pub ) {
 
-
+		var request = false;
 
 		function init() {
 
+			// When someone adds/removes a character from the input...
 			$( 'form.search-form .search-field' ).on( 'keyup', function() {
-				$.ajax( {
+				if ( false !== request ) {
+
+					// Cancel any older requests.
+					request.abort();
+				}
+
+				request = $.ajax( {
 					method: 'post',
 					url: ajaxSearchl10n.ajaxUrl,
 
@@ -21,6 +28,7 @@ if ( ! window.hasOwnProperty( 'ajaxSearch' ) ) {
 
 					// Success.
 					success: function( data, status, jqXHR ) {
+						request = false;
 					},
 
 					// Failure.
