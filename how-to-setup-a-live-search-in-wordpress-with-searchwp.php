@@ -108,7 +108,12 @@ function live_ajax_search() {
 		wp_send_json_success( live_ajax_get_post_data_from_ids( $query->get_posts() ) );
 	}
 
+	$query = new SWP_Query( array(
+		's'      => $s,
+		'fields' => 'ids',
+	) );
 
+	wp_send_json_success( live_ajax_get_post_data_from_ids( $query->get_posts() ) );
 }
 add_action( 'wp_ajax_nopriv_ajax_search', 'live_ajax_search' );
 add_action( 'wp_ajax_ajax_search', 'live_ajax_search' );

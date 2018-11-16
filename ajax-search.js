@@ -4,8 +4,37 @@ if ( ! window.hasOwnProperty( 'ajaxSearch' ) ) {
 	window.ajaxSearch = ( function( $, pub ) {
 
 		var request = false;
+		var resultsLocation = {};
 
-		function init() {
+		function placeResults( data ) {
+
+			// Clear the results.
+			resultsLocation.html( '' );
+
+			for ( var i in data ) {
+
+				// Get the post data.
+				var post = data[ i ];
+
+				// Create a list element.
+				var li = $( '<li>' );
+
+				// Create an anchor element.
+				var a = $( '<a>' );
+
+				// Save the post title and link to the anchor.
+				a.text( post.post_title );
+				a.attr( 'href', post.post_permalink );
+
+				// Add the anchor to the list element.
+				li.append( a );
+
+				// Add the list element to the results <ul>.
+				resultsLocation.append( li );
+			}
+		}
+
+		function initAjax() {
 
 			// When someone adds/removes a character from the input...
 			$( 'form.search-form .search-field' ).on( 'keyup', function() {
@@ -27,8 +56,9 @@ if ( ! window.hasOwnProperty( 'ajaxSearch' ) ) {
 					},
 
 					// Success.
-					success: function( data, status, jqXHR ) {
+					success: function( response, status, jqXHR ) {
 						request = false;
+						placeResults( response.data );
 					},
 
 					// Failure.
@@ -36,6 +66,19 @@ if ( ! window.hasOwnProperty( 'ajaxSearch' ) ) {
 					}
 				} );
 			} );
+		}
+
+		function initResultsLocation() {
+			resultsLocation = $( '<ul id="ajax-results">' );
+			var form = $( 'form.search-form' ).append( resultsLocation );
+		}
+
+		function init() {
+
+
+
+			initResultsLocation();
+			initAjax();
 
 		}
 
