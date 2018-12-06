@@ -216,4 +216,6 @@
  *
  * I would activate TwnetySeventeen theme and try there first, then try switch
  * to other themes and see that as you type, results popup!
+ *
+ * ...better yet.... Try searching for that author field you saved in your Book CPT!
  */

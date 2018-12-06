@@ -31,6 +31,22 @@
  *
  * Let's start here.....
  *
+ * A few things to note:
+ *
+ * 1) This code is not WDS Coding Standard Compliant, and I did not do any fancy coding practices, on purpose.
+ *    I wanted this to be easy for the beginner and the advanced person to look at as a way to get started
+ *    building live searches using SearchWP. I could have easily made this OOP or even wrapped it in a Class wrapper,
+ *    or even a function....but I didn't, to keep it really simple for everyone.
+ *
+ * 2) There is SO much more you can do here! But, the goal of this is to get YOU STARTED. You're going to end up with a cool
+ *    popup that shows up when you search for something as you type....but there's a lot farther you can go from there...
+ *
+ * 3) This does not modify the search results page. Though we show you about 20 search results in the "live" popup, if
+ *    you hit enter you're going to see the search results page. It uses the "default" engine in SearchWP by default, so the
+ *    results should be the same (given we alpha-sort our results, they won't be on the search results landing page).
+ *
+ * 4) Email me if you found this useful! aubrey@webdevstudios.com
+ *
  * First off, this file is the actual plugin file, when you activate this plugin, this files loads first,
  * so ... start here.... READ ON!
  */
@@ -210,8 +226,9 @@ function pass_search_result_data_back_to_frontend() {
 
 		// Use default WP_Query search (just as a fallback, because we don't want things to just not work because someone deactivated SearchWP).
 		$query = new WP_Query( array(
-			's'      => $s,
-			'fields' => 'ids',
+			's'              => $s, // The search term sent over via AJAX.
+			'fields'         => 'ids', // We just want ID's here so we can only get what we need later.
+			'posts_per_page' => 20, // More results, we may want to do something more advanced here.
 		) );
 
 		// Send back the results for WP_Query (generic search results). Note, the script will die() here and not continue.
@@ -229,8 +246,9 @@ function pass_search_result_data_back_to_frontend() {
 	 * This works a lot like WP_Query but is more powerful.
 	 */
 	$query = new SWP_Query( array(
-		's'      => $s,
-		'fields' => 'ids',
+		's'              => $s, // The search term sent over via AJAX.
+		'fields'         => 'ids', // We just want ID's here so we can only get what we need later.
+		'posts_per_page' => 20, // More results, we may want to do something more advanced here.
 	) );
 
 	// And....send data back to the frontend to be processed in JavaScript.
