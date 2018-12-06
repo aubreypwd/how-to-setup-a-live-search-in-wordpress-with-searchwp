@@ -228,7 +228,7 @@ function pass_search_result_data_back_to_frontend() {
 		$query = new WP_Query( array(
 			's'              => $s, // The search term sent over via AJAX.
 			'fields'         => 'ids', // We just want ID's here so we can only get what we need later.
-			'posts_per_page' => 20, // More results, we may want to do something more advanced here.
+			'posts_per_page' => 20, // More results, we may want to do something more advanced here (if you comment this out it will follow Dashboard > General > Reading settings).
 		) );
 
 		// Send back the results for WP_Query (generic search results). Note, the script will die() here and not continue.
@@ -248,7 +248,7 @@ function pass_search_result_data_back_to_frontend() {
 	$query = new SWP_Query( array(
 		's'              => $s, // The search term sent over via AJAX.
 		'fields'         => 'ids', // We just want ID's here so we can only get what we need later.
-		'posts_per_page' => 20, // More results, we may want to do something more advanced here.
+		'posts_per_page' => 20, // More results, we may want to do something more advanced here (if you comment this out it will follow Dashboard > General > Reading settings).
 	) );
 
 	// And....send data back to the frontend to be processed in JavaScript.
