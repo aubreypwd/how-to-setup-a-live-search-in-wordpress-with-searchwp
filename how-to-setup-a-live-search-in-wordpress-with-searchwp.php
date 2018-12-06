@@ -1,15 +1,11 @@
 <?php
 /**
  * Plugin Name: How to setup a "live" search in WordPress with SearchWP
- * Version:     1.0.0
  * Author:      Aubrey Portwood at WebDevStudios
  * Author URI:  http://webdevstudios.com
  * Text Domain: how-to-setup-a-live-search-in-wordpress-with-searchwp
  * License:     GPLv2
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- *
- * @since       1.0.0
- * @package     WebDevStudios\how-to-setup-a-live-search-in-wordpress-with-searchwp
  */
 
 /*
@@ -28,6 +24,15 @@
  *     You will have to allow the Indexer to do the initial index. Will likely not take long on a small site.
  *
  * 3) That's it, SearchWP is ready, now let's start coding...
+ */
+
+/*
+ * Hi!
+ *
+ * Let's start here.....
+ *
+ * First off, this file is the actual plugin file, when you activate this plugin, this files loads first,
+ * so ... start here.... READ ON!
  */
 
 /*
