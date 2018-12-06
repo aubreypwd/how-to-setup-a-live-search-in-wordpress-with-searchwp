@@ -14,7 +14,10 @@ Also, you'll need to download SearchWP from [http://searchwp.com](http://searchw
 
 ### Setting up SearchWP
 
-Once you got both plugins active you'll want to setup SearchWP, I've [made a neat video](____ADDVIDEO____) walking you through SearchWP and the above setup steps.
+Once you got both plugins active you'll want to setup SearchWP, I've [made a neat video](https://www.youtube.com/watch?v=1WA3EAJCZd0) walking you through SearchWP and the above setup steps.
+
+
+https://www.youtube.com/watch?v=1WA3EAJCZd0
 
 ___________________
 
