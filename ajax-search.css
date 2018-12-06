@@ -1,15 +1,36 @@
+/*
+ * You're looking at the styles for the popup.
+ *
+ * It's really simple, could have done a lot more, but this at least gets the dropdown,
+ * in it's basic form, on any theme.
+ *
+ * You could modify onwards from here.
+ */
+
 .search-form {
+
+	/* We need to make the search form relative, so the #ajax-results div we make in JavaScript can float around inside.s */
 	position: relative;
 }
 
 #ajax-results {
+
+	/*
+	 * This is our actual popup.
+	 *
+	 * It's floats around inside the search form, and has some mediocre dropdown styles added.
+	 * If we do this right, it should show up right below the input.
+	 */
 	position: absolute;
   background-color: white;
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
+  width: 95%;
 }
 
 #ajax-results li {
+
+	/* Give our post list items some space to breath */
 	padding: 5px;
 }
