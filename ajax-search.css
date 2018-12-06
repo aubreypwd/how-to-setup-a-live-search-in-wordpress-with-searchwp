@@ -5,6 +5,8 @@
  * in it's basic form, on any theme.
  *
  * You could modify onwards from here.
+ *
+ * Note, if the popup doesn't have any items in it, it shouldn't show.
  */
 
 .search-form {
@@ -23,14 +25,22 @@
 	 */
 	position: absolute;
   background-color: white;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
   width: 95%;
+  list-style-type: none;
 }
 
 #ajax-results li {
 
+	/* Add borders to our elements */
+	border-left: 1px solid;
+	border-right: 1px solid;
+
 	/* Give our post list items some space to breath */
 	padding: 5px;
+}
+
+#ajax-results li:last-child {
+
+	/* Put the border of the popup on the last item in the list */
+	border-bottom: 1px solid;
 }

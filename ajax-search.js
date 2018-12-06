@@ -84,7 +84,7 @@
 		resultsLocation = $( '<ul id="ajax-results">' );
 
 		// Add our UL to the already existing search form using jQuery (now it's just sitting there ready for us).
-		form.append( resultsLocation );
+		searchForm.append( resultsLocation );
 	}
 
 	/**
@@ -208,3 +208,12 @@
 	}
 
 } ( jQuery ) )
+
+/*
+ * Now, go glance at ajax-search.css (not a lot, but worth a look)...
+ *
+ * Now that you've seen what the code does, go try it.
+ *
+ * I would activate TwnetySeventeen theme and try there first, then try switch
+ * to other themes and see that as you type, results popup!
+ */

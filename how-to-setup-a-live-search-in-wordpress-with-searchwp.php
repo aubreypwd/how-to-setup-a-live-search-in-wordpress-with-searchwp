@@ -15,15 +15,19 @@
 /*
  * Before you code steps (also see video):
  *
- * 1) Download and install SearchWP (or SearchWP Pro) from http://searchwp.com by logging into your account and activate it
+ *   Note, there is a cool video I have with this that goes through these steps more visually.
+ *
+ * =========================================
+ *
+ * 1) Download and install SearchWP (or SearchWP Pro) from http://searchwp.com by logging into your account and activate it.
  *
  *     You will have to install SearchWP Zip you download via Dashboard > Plugins > Add New > Upload.
  *
- * 2) Goto Dashboard > Settings > SearcWP and click "Save Engines" after you setup your search criteria
+ * 2) Goto Dashboard > Settings > SearcWP and click "Save Engines" after you setup your search criteria.
  *
  *     You will have to allow the Indexer to do the initial index. Will likely not take long on a small site.
  *
- * 3) That's it, now let's start coding...
+ * 3) That's it, SearchWP is ready, now let's start coding...
  */
 
 /*
@@ -31,7 +35,7 @@
  * to create some post-meta fields that we can use to test SearchWP's ability to search
  * postmeta!
  *
- * So yeah, let's include that library.
+ * So yeah, let's include that library, so we don't have to write too much code for adding a metabox.
  */
 require_once 'cmb2/init.php';
 
@@ -49,6 +53,8 @@ require_once 'cmb2/init.php';
  *
  * To make sure our meta fields for this work in search expand the "Books" Post Type you just added, and click "Add Attribute".
  * Click "Custom Field" and add _author (that will ensure we can search the author custom field).
+ *
+ * NOTE search results will include Posts too, we're just adding this CPT JUST to show you you can search for CPT's and custom fields too!
  */
 add_action( 'init', function() {
 
@@ -242,3 +248,7 @@ function pass_search_result_data_back_to_frontend() {
  */
 add_action( 'wp_ajax_nopriv_ajax_search', 'pass_search_result_data_back_to_frontend' );
 add_action( 'wp_ajax_ajax_search', 'pass_search_result_data_back_to_frontend' );
+
+/*
+ * Now go checkout ajax-search.js....
+ */
